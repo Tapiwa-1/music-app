@@ -12,18 +12,21 @@
                 </span>
             </div>
             <div class="w-1/2 mt-2">
-                <router-link class="float-right bg-transparent text-gray-900 font-semibold hover:text-white py-2 px-4 hover:border-transparent hover:bg-green-500 border border-green-500 rounded" to="">Edit Profile</router-link>
+                <RouterLinkButton btnText="Edit Profile" color="green" url="/account/edit-profile"/>
             </div>
         </div>
         <ProfileInfoSection/>
         <AboutSection/>
     </div>
   </div>
+  <SongsSection/>
 </template>
 
 <script setup>
 import ProfileInfoSection from '@/components/partials/ProfileInfoSection.vue';
 import AboutSection from '@/components/partials/AboutSection.vue';
+import RouterLinkButton from '@/components/global/RouterLinkButton.vue';
+import SongsSection from '@/components/partials/SongsSection.vue';
 </script>
 
 <style>
