@@ -9,7 +9,8 @@
 - Email Verification
 - Forget Password
 - Logout
-- Will Keep on Adding features
+- Add music, Youtube Videos, Posts
+-More Features to be added
 
 
 ## Project setup
