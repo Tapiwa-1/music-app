@@ -20,6 +20,8 @@
     </div>
   </div>
   <SongsSection/>
+  <YoutubeVideoSection/>
+  <PostsSection/>
 </template>
 
 <script setup>
@@ -27,6 +29,8 @@ import ProfileInfoSection from '@/components/partials/ProfileInfoSection.vue';
 import AboutSection from '@/components/partials/AboutSection.vue';
 import RouterLinkButton from '@/components/global/RouterLinkButton.vue';
 import SongsSection from '@/components/partials/SongsSection.vue';
+import YoutubeVideoSection from '@/components/partials/YoutubeVideoSection.vue';
+import PostsSection from '@/components/partials/PostsSection.vue';
 </script>
 
 <style>
