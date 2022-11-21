@@ -38,6 +38,7 @@
             <div class="my-auto fixed border-white w-80 pt-16">
                 <p class="text-2xl text-center text-white font-bold">Menu</p>
                 <RouterLinkButton class="w-full text-gray-100 text-center text-lg" btnText="Profile" color="indigo" url="/account/profile"/>
+               <RouterLinkButton @click="open = !open" class="w-full mt-4 text-gray-100 text-center text-lg" btnText="Close" color="red" />
 
             </div>
         </div>
