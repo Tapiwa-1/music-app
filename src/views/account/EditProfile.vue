@@ -34,6 +34,7 @@
   import TextInput from '@/components/global/TextInput.vue';
     import TextArea from '@/components/global/DisplayTextArea.vue';
   import DisplayCropperButton from '@/components/global/DisplayCropperButton.vue';
+ 
   
   let firstname = ref(null);
   let lastname = ref(null);
