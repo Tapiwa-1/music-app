@@ -4,6 +4,7 @@ import './registerServiceWorker';
 import router from './router';
 import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+import './axios.js';
 
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
