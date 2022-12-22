@@ -6,6 +6,9 @@ import AccountView from '../views/AccountView.vue'
 import ProfileSection from '../views/account/ProfileSection.vue'
 import EditProfile from '../views/account/EditProfile.vue'
 import AddSong from '../views/account/AddSong.vue'
+import DeleteSong from '../views/account/DeleteSong.vue'
+import AddYoutubeVideo from '../views/account/AddYoutubeVideo.vue'
+import DeleteYoutubeVideo from '../views/account/DeleteYoutubeVideo.vue'
 
 const routes = [
   {
@@ -34,15 +37,40 @@ const routes = [
         component: ProfileSection
       },
       {
-        path: 'editprofile',
+        path: 'edit-profile',
         name: 'EditProfile',
         component: EditProfile
       },
       {
-        path: 'addsong',
+        path: 'add-song',
         name: 'AddSong',
         component: AddSong
-      }
+      },
+      {
+        path: 'delete-song',
+        name: 'DeleteSong',
+        component: DeleteSong
+      },
+      {
+        path: 'add-youtube-video',
+        name: 'AddYoutubeVideo',
+        component: AddYoutubeVideo,
+      },
+      {
+        path: 'delete-youtube-video',
+        name: 'DeleteYoutubeVideo',
+        component: DeleteYoutubeVideo,
+      },
+      // {
+      //   path: 'create-post',
+      //   name: 'CreatePost',
+      //   component: CreatePost,
+      // },
+      // {
+      //   path: 'edit-post/:id',
+      //   name: 'EditPost',
+      //   component: EditPost,
+      // },
     ]
   }
 

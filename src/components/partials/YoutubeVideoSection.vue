@@ -5,8 +5,8 @@
         <div class="text-gray-900 text-xl">YouTube Videos</div>
         <div class="bg-green-500 w-full h-1"></div>
         <div class="w-full mt-4">
-          <RouterLinkButton class="ml-2" btnText="Delete YouTube Video" color="red" url="/account/delete-song"/>
-           <RouterLinkButton btnText="Add YouTube Video" color="green" url="/account/add-song"/>
+          <RouterLinkButton class="ml-2" btnText="Delete YouTube Video" color="red" url="/account/delete-youtube-video"/>
+           <RouterLinkButton btnText="Add YouTube Video" color="green" url="/account/add-youtube-video"/>
         </div>
       </div>
     </div>

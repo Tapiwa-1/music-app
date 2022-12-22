@@ -12,7 +12,7 @@
                 </span>
             </div>
             <div class="w-1/2 mt-2 ">
-                <RouterLinkButton btnText="Edit Profile" color="green" url="editprofile"/>
+                <RouterLinkButton btnText="Edit Profile" color="green" url="edit-profile"/>
             </div>
         </div>
         <ProfileInfoSection/>
