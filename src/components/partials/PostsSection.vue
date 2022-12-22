@@ -5,8 +5,8 @@
         <div class="text-gray-900 text-xl">Posts</div>
         <div class="bg-green-500 w-full h-1"></div>
         <div class="w-full mt-4">
-          <RouterLinkButton class="ml-2" btnText="Delete Post" color="red" url="/account/delete-song"/>
-           <RouterLinkButton btnText="Create Post" color="green" url="/account/add-song"/>
+      
+           <RouterLinkButton btnText="Create Post" color="green" url="/account/create-post"/>
         </div>
       </div>
     </div>
