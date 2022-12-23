@@ -22,6 +22,7 @@ export const useUserStore = defineStore('user', {
         this.$state.email = res.data.user.email;
         this.$state.location = res.data.user.location;
         this.$state.description = res.data.user.description;
+        this.$state.image = res.data.user.image;
     },
     async fetchUser(){
         let res = await axios.get('users/'+ this.$state.id);
@@ -30,6 +31,7 @@ export const useUserStore = defineStore('user', {
         this.$state.lastName = res.data.user.last_name; 
         this.$state.location = res.data.user.location;
         this.$state.description = res.data.user.description;
+        this.$state.image = res.data.user.image;
     },
     clearUser (){
         this.$state.id = null;
@@ -37,6 +39,7 @@ export const useUserStore = defineStore('user', {
         this.$state.lastName = null; 
         this.$state.location = null;
         this.$state.description = null;
+        this.$state.image = null;
     }
   },
   persist: true

@@ -31,7 +31,7 @@
             <div class="w-full md:w-1/2 px-3">
                 <CroppedImage
                     label="Cropped Image"
-                    :image="image"
+                    :image="'http://127.0.0.1:8000/images/users/'+ image"
                 />
             </div>
         </div>
@@ -65,7 +65,7 @@
   let lastName = ref(null);
   let location = ref(null);
   let description = ref(null);
-  // let imageData = null;
+  let imageData = null;
   let image = ref(null);
   let showModal = ref(false);
   let errors = ref([]);
@@ -83,7 +83,7 @@
   })
 
   const setCroppedImageData = (data) =>{
-    // imageData  = data;
+    imageData  = data;
     image.value = data.imageUrl;
   }
 
@@ -98,6 +98,14 @@
     data.append('location', location.value || '' );
     data.append('description', description.value || '' );
 
+    if(imageData){
+      data.append('image', imageData.file || '' );
+      data.append('height', imageData.height || '' );
+      data.append('width', imageData.width || '' );
+      data.append('left', imageData.left || '' );
+      data.append('top', imageData.top || '' );
+    }
+    
     try{
       await axios.post('users/'+ userStore.id +"?_method=PUT", data);
 
