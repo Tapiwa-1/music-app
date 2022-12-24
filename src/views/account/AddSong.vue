@@ -104,7 +104,6 @@ import { ref } from 'vue';
             form.append('file', song.value)
 
             await axios.post('api/songs', form)
-
             songStore.fetchSongsByUserId(userStore.id)
             // setTimeout(() => {
             //     router.push('/account/profile/'+ userStore.id)

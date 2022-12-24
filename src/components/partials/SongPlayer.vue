@@ -19,7 +19,7 @@
             return {
                 name: song.title,
                 artist: songStore.artistName,
-                url: process.env.VUE_APP_API_URL + 'songs/' + songStore.artistId + '/' + song.song
+                url: process.env.VUE_APP_API_URL + 'songs/' + songStore.artistId+ '/' + song.song
             }
         })
         for (let i = 0; i < newSongs.length; i++) {

@@ -2,6 +2,7 @@
   <div class="container max-w-4xl mx-auto flex">
     <div class="w-1/3">
         <img :src="userStore.image" alt="" class="rounded w-full h-auto shadow-lg">
+        
     </div>
     <div class="w-full pl-4">
         <div class="flex">
