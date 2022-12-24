@@ -71,6 +71,10 @@
 import { ref } from 'vue';
     import TextInput from '../../components/global/TextInput.vue'
     import SubmitFormButton from '../../components/global/SubmitFormButton.vue'
+    import Swal from '../../sweetalert2.js';
+    import axios from 'axios';
+    import { useUserStore } from '@/store/user-store';
+    import {useSongStore} from '@/store/song-store'
     
     let title = ref(null)
     let song = ref(null)
@@ -79,7 +83,37 @@ import { ref } from 'vue';
     const handleFileUpload = () => {
         song.value = file.value.files[0]
     }
-    
+     
+
+    const userStore = useUserStore();
+    const songStore = useSongStore();
+    const addSong = async ()=>{
+        if(!song.value){
+            Swal.fire(
+                'Opps, Something went wrong!',
+                'You forgot to upload the mp3 file',
+                'warning'
+            )
+            return null
+        }
+
+        try {
+            let form = new FormData()
+            form.append('user_id', userStore.id)
+            form.append('title', title.value || '')
+            form.append('file', song.value)
+
+            await axios.post('api/songs', form)
+
+            songStore.fetchSongsByUserId(userStore.id)
+            // setTimeout(() => {
+            //     router.push('/account/profile/'+ userStore.id)
+            // }, 200)
+        } catch (err) {
+            errors.value = err.response.data.errors
+        }
+    }
+
 </script>
 
 <style>
