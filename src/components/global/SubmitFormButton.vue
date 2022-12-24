@@ -12,6 +12,7 @@
             no-underline
             px-4
             py-3
+            focus:bg-green-200
         "
         @click="$emit('submit', true)"
     >

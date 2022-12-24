@@ -75,11 +75,12 @@ import { ref } from 'vue';
     import axios from 'axios';
     import { useUserStore } from '@/store/user-store';
     import {useSongStore} from '@/store/song-store'
-    
+    import {useRouter} from 'vue-router';
     let title = ref(null)
     let song = ref(null)
     let file = ref(null)
     let errors = ref([])
+    
     const handleFileUpload = () => {
         song.value = file.value.files[0]
     }
@@ -87,6 +88,7 @@ import { ref } from 'vue';
 
     const userStore = useUserStore();
     const songStore = useSongStore();
+    const router = useRouter();
     const addSong = async ()=>{
         if(!song.value){
             Swal.fire(
@@ -105,9 +107,9 @@ import { ref } from 'vue';
 
             await axios.post('api/songs', form)
             songStore.fetchSongsByUserId(userStore.id)
-            // setTimeout(() => {
-            //     router.push('/account/profile/'+ userStore.id)
-            // }, 200)
+            setTimeout(() => {
+                router.push('/account/profile')
+            }, 200)
         } catch (err) {
             errors.value = err.response.data.errors
         }
