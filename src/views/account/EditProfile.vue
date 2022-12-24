@@ -31,7 +31,7 @@
             <div class="w-full md:w-1/2 px-3">
                 <CroppedImage
                     label="Cropped Image"
-                    :image="'http://127.0.0.1:8000/images/users/'+ image"
+                    :image="image"
                 />
             </div>
         </div>
@@ -107,7 +107,7 @@
     }
     
     try{
-      await axios.post('users/'+ userStore.id +"?_method=PUT", data);
+      await axios.post('api/users/'+ userStore.id +"?_method=PUT", data);
 
       await userStore.fetchUser();
 
