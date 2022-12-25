@@ -14,6 +14,7 @@
     onMounted(() => { 
         setTimeout(() => { mapSongs() }, 500)
     })
+    
     const mapSongs = () => {
         let newSongs = songStore.songs.map(function (song) {
             return {
