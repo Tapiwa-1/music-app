@@ -12,7 +12,6 @@
             @showModal="showModal = false"
         />
 
-        
         <div class="flex flex-wrap mt-4 mb-6">
             <div class="w-full md:w-1/2 px-3">
                 <TextInput 
@@ -20,7 +19,7 @@
                     placeholder="Awesome Concert!!!"
                     v-model:input="title"
                     inputType="text"
-                    error="This is an error"
+                    :error="errors.title ? errors.title[0]: ''"
                 />
             </div>
             <div class="w-full md:w-1/2 px-3">
@@ -29,7 +28,7 @@
                     placeholder="Madrid, ES"
                     v-model:input="location"
                     inputType="text"
-                    error="This is an error"
+                    :error="errors.location ? errors.location[0]: ''"
                 />
             </div>
         </div>
@@ -41,6 +40,7 @@
                     btnText="Add Post Image"
                     @showModal="showModal = true"
                 />
+                
             </div>
         </div>
 
@@ -59,7 +59,7 @@
                     label="Description"
                     placeholder="Please enter some information here!!!"
                     v-model:description="description"
-                    error="This is an error"
+                   :error="errors.description ? errors.description[0]: ''"
                 />
             </div>
         </div>
@@ -78,25 +78,65 @@
 
 <script setup>
     import { ref } from 'vue'
-     import TextInput from '@/components/global/TextInput.vue';
+    import TextInput from '@/components/global/TextInput.vue';
     import TextArea from '@/components/global/DisplayTextArea.vue';
     import DisplayCropperButton from '@/components/global/DisplayCropperButton.vue';
-  import SubmitFormButton from '@/components/global/SubmitFormButton.vue';
-  import CropperModel from '@/components/global/CropperModel.vue';
-  import CroppedImage from '@/components/global/CroppedImage.vue'
+    import SubmitFormButton from '@/components/global/SubmitFormButton.vue';
+    import CropperModel from '@/components/global/CropperModel.vue';
+    import CroppedImage from '@/components/global/CroppedImage.vue'
+    import { useUserStore } from '@/store/user-store';
+    import {useRouter} from 'vue-router';
+    import axios from 'axios';
+    import Swal from '@/sweetalert2';
+
+    const router = useRouter();
+    const userStore = useUserStore();
 
     let showModal = ref(false)
     let title = ref(null)
     let location = ref(null)
     let description = ref(null)
-    // let imageData = null
+    let imageData = '' //null
     let image = ref(null)
-    // let errors = ref([])
+    let errors = ref([])
 
+    
     const setCroppedImageData = (data) => {
-        // imageData = data
+        imageData = data
         image.value = data.imageUrl
     }
+    const createPost = async () =>{
 
+        errors.value = [];
+        let data = new FormData();
+
+        data.append('user_id', userStore.id || '' );
+        data.append('title', title.value || '' );
+        data.append('location', location.value || '' );
+        data.append('description', description.value || '' );
+        
+        if(ImageData){
+            data.append('image', imageData.file || '' );
+            data.append('height', imageData.height || '' );
+            data.append('width', imageData.width || '' );
+            data.append('left', imageData.left || '' );
+            data.append('top', imageData.top || '' );
+        }
+
+        
+        try{
+        console.log(data);
+        await axios.post('api/posts/', data)
+
+        Swal.fire(
+            'New Post created',
+            'The post created successfully',
+            'success'
+        )
+        router.push('/account/profile');
+        }catch(err){
+        errors.value = err.response.data.errors;
+        }
+    }
    
 </script>
