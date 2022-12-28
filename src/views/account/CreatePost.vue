@@ -85,12 +85,14 @@
     import CropperModel from '@/components/global/CropperModel.vue';
     import CroppedImage from '@/components/global/CroppedImage.vue'
     import { useUserStore } from '@/store/user-store';
+    import { usePostStore } from '@/store/posts-store';
     import {useRouter} from 'vue-router';
     import axios from 'axios';
     import Swal from '@/sweetalert2';
 
     const router = useRouter();
     const userStore = useUserStore();
+    const postStore = usePostStore();
 
     let showModal = ref(false)
     let title = ref(null)
@@ -127,7 +129,7 @@
         try{
         console.log(data);
         await axios.post('api/posts/', data)
-
+        postStore.fetchPostsByUserId(userStore.id);
         Swal.fire(
             'New Post created',
             'The post created successfully',

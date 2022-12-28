@@ -5,27 +5,27 @@
         <div class="text-gray-900 text-xl">Posts</div>
         <div class="bg-green-500 w-full h-1"></div>
         <div class="w-full mt-4">
-      
+     
            <RouterLinkButton btnText="Create Post" color="green" url="/account/create-post"/>
         </div>
       </div>
     </div>
-    <div class="flex flex-wrap mb-4">
-       <div class="my-1 px-2 w-full md:w-1/2 lg:w-1/2">
-
+    <div  class="flex flex-wrap mb-4">
+       <div v-for="post in postStore.posts" :key="post" class="my-1 px-2 w-full md:w-1/2 lg:w-1/2">
+        
       <div class="max-w-sm bg-white border  rounded-lg shadow-md ">
           <a href="#">
-              <img class="rounded-t-lg" src="https://place-hold.it/500" alt="" />
+              <img class="rounded-t-lg" :src="postStore.postImage(post.image)" alt="" />
           </a>
           <div class="p-5 md:p-4">
             <div class="text-lg">
-              <router-link to="" class="underline text-blue-500">Text Title</router-link>
+              <router-link :to="'/account/post-by-id/'+ post.id " class="underline text-blue-500">{{ post.title }}</router-link>
             </div>
-            <p class="py-2">Location: Text-location</p>
-            <p class="text-gray-darker text-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum excepturi amet eaque! Possimus mollitia exercitationem assumenda nesciunt modi nulla magni quas nihil aliquid omnis recusandae eos vero culpa, expedita veritatis!</p>
+            <p class="py-2">Location: {{ post.location }}</p>
+            <p class="text-gray-darker text-md">{{ post.description }}</p>
             <div class="mt-2 flex items-center justify-end">
                 <router-link to="" class="bg-blue-500 hover:text-blue-700 text-white text-sm text-bold py-1 px-2 rounded-full">Edit Post</router-link>
-                <button class="bg-red-500 hover:bg-red-700 text-white text-sm font-bold py-1 px-2 rounded-full">Delete</button>
+                <button class="bg-red-500 hover:bg-red-700 text-white text-sm font-bold py-1 px-2 rounded-full" @click="deletePost(post.title,post.id)">Delete</button>
             </div>
           </div>
       </div>
@@ -37,7 +37,38 @@
 
 <script setup>
 import RouterLinkButton from '../global/RouterLinkButton.vue';
+import { usePostStore } from '@/store/posts-store';
+import { useUserStore } from '@/store/user-store';
+import Swal from '../../sweetalert2';
+import axios from 'axios';
 
+const postStore = usePostStore();
+const userStore = useUserStore();
+  const deletePost = async (title, id) => {
+        Swal.fire({
+            title: 'Are you sure you want to delete the post "' + title + '"',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.delete('api/posts/' + id)
+                    postStore.fetchPostsByUserId(userStore.id)
+                    Swal.fire(
+                        'Deleted!',
+                        'Your video has been deleted.',
+                        'success'
+                    )
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        })
+    }
 </script>
 
 <style>
