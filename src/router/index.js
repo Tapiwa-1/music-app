@@ -10,7 +10,7 @@ import DeleteSong from '../views/account/DeleteSong.vue'
 import AddYoutubeVideo from '../views/account/AddYoutubeVideo.vue'
 import DeleteYoutubeVideo from '../views/account/DeleteYoutubeVideo.vue'
 import CreatePost from '../views/account/CreatePost.vue'
-// import EditPost from '../views/account/EditPost.vue'
+import EditPost from '../views/account/EditPost.vue'
 import PostsSection from '../views/account/PostsSection.vue'
 // import PostsById from '../views/account/PostsById.vue'
 
@@ -70,11 +70,11 @@ const routes = [
         name: 'CreatePost',
         component: CreatePost,
       },
-      // {
-      //   path: 'edit-post',
-      //   name: 'EditPost',
-      //   component: EditPost,
-      // },
+      {
+        path: 'edit-post/:id',
+        name: 'EditPost',
+        component: EditPost,
+      },
       {
         path: 'posts',
         name: 'PostsSection',

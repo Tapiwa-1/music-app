@@ -24,7 +24,7 @@
             <p class="py-2">Location: {{ post.location }}</p>
             <p class="text-gray-darker text-md">{{ post.description }}</p>
             <div class="mt-2 flex items-center justify-end">
-                <router-link to="" class="bg-blue-500 hover:text-blue-700 text-white text-sm text-bold py-1 px-2 rounded-full">Edit Post</router-link>
+                <router-link :to="'/account/edit-post/'+ post.id" class="bg-blue-500 hover:text-blue-700 text-white text-sm text-bold py-1 px-2 rounded-full">Edit Post</router-link>
                 <button class="bg-red-500 hover:bg-red-700 text-white text-sm font-bold py-1 px-2 rounded-full" @click="deletePost(post.title,post.id)">Delete</button>
             </div>
           </div>
