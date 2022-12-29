@@ -85,12 +85,13 @@
     import CroppedImage from '@/components/global/CroppedImage.vue'
     import { useUserStore } from '@/store/user-store';
     import { usePostStore } from '@/store/posts-store';
-    import {useRouter} from 'vue-router';
+    import {useRoute, useRouter} from 'vue-router';
     import axios from 'axios';
     import Swal from '@/sweetalert2';
 
-    const route = useRouter()
-    const router = useRouter()
+   
+    const route = useRoute()
+    const router = useRouter();
     const postStore = usePostStore()
     const userStore = useUserStore()
 
@@ -112,7 +113,20 @@
     }
 
     const getPostById = async () => {
-        try {
+        // try {
+        //     let res = await axios.get('api/posts/' + router.params.id)
+
+        //     console.log(res)
+
+        //     title.value = res.data.title
+        //     location.value = res.data.location
+        //     image.value = postStore.postImage(res.data.image)
+        //     description.value = res.data.description
+        //     console.log("Exe");
+        // } catch (err) {
+        //     errors.value = err.response.data.errors
+        // }
+        try{
             let res = await axios.get('api/posts/' + route.params.id)
 
             console.log(res)
@@ -121,8 +135,9 @@
             location.value = res.data.location
             image.value = postStore.postImage(res.data.image)
             description.value = res.data.description
-        } catch (err) {
-            errors.value = err.response.data.errors
+           
+        }catch(err){
+        errors.value = err.response.data.errors;
         }
         
     }
@@ -157,7 +172,8 @@
 
             await postStore.fetchPostsByUserId(userStore.id)
 
-            router.push('/account/profile/'+ userStore.id)
+            // route.push('/account/profile/'+ userStore.id);
+            router.push('/account/profile');
         } catch (err) {
             errors.value = err.response.data.errors;
         }
