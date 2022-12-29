@@ -12,7 +12,7 @@ import DeleteYoutubeVideo from '../views/account/DeleteYoutubeVideo.vue'
 import CreatePost from '../views/account/CreatePost.vue'
 import EditPost from '../views/account/EditPost.vue'
 import PostsSection from '../views/account/PostsSection.vue'
-// import PostsById from '../views/account/PostsById.vue'
+import PostsById from '../views/account/PostById.vue'
 
 const routes = [
   {
@@ -80,11 +80,11 @@ const routes = [
         name: 'PostsSection',
         component: PostsSection,
       },
-      //  {
-      //   path: 'post-by-id',
-      //   name: 'PostsById',
-      //   component: PostsById,
-      // },
+       {
+        path: 'post-by-id/:id',
+        name: 'PostsById',
+        component: PostsById,
+      },
       
     ]
   }
