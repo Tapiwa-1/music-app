@@ -25,12 +25,23 @@
   import axios from 'axios';
   import { ref } from '@vue/reactivity';
   import { useUserStore } from '@/store/user-store';
+  import { useProfileStore } from '@/store/profile-store';
+  import { useSongStore } from '@/store/song-store';
+  import { usePostStore } from '@/store/posts-store';
+  import { useVideoStore } from '@/store/video-store';
+  import { useRouter} from 'vue-router';
 
     let email = ref(null);
     let password = ref(null);
     let errors = ref([]);
 
     const userStore = useUserStore();
+    const postStore = usePostStore();
+    const videoStore = useVideoStore();
+    const songStore = useSongStore();
+    const profileStore = useProfileStore();
+    const router = useRouter();
+
     const login = async () =>{
       errors.value = [];
 
@@ -42,6 +53,15 @@
         console.log(res);
 
         userStore.setUserDetails(res);
+        await profileStore.fetchProfileById(userStore.id);
+        await songStore.fetchSongsByUserId(userStore.id);
+        await postStore.fetchPostsByUserId(userStore.id);
+        await videoStore.fetchVideosByUserId(userStore.id);
+
+        router.push('/account/profile/'+ userStore.id);
+
+
+
       }catch(err){
         errors.value = err.response.data.errors
       }
