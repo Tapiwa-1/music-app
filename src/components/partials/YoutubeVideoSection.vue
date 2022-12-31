@@ -53,6 +53,6 @@
     const videoStore = useVideoStore()
 
     onMounted(async () => {
-        await videoStore.fetchVideosByUserId(userStore.id)
+        await videoStore.fetchVideosByUserId(route.params.id)
     })
 </script>

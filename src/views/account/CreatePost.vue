@@ -135,7 +135,7 @@
             'The post created successfully',
             'success'
         )
-        router.push('/account/profile');
+        router.push('/account/profile/'+ userStore.id);
         }catch(err){
         errors.value = err.response.data.errors;
         }

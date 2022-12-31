@@ -22,8 +22,16 @@ import SongPlayer from './SongPlayer.vue';
 import { useRoute } from 'vue-router';
 
 import { useUserStore } from '@/store/user-store'
+import { useSongStore } from '@/store/song-store'
+import { onMounted } from '@vue/runtime-core';
+
 const userStore = useUserStore();
 const route = useRoute();
+const songStore = useSongStore();
+
+onMounted( async ()=>{
+  await songStore.fetchSongById(route.params.id);
+})
 </script>
 
 <style>

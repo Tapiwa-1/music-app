@@ -172,8 +172,8 @@
 
             await postStore.fetchPostsByUserId(userStore.id)
 
-            // route.push('/account/profile/'+ userStore.id);
-            router.push('/account/profile');
+            router.push('/account/profile/'+ userStore.id);
+            // router.push('/account/profile');
         } catch (err) {
             errors.value = err.response.data.errors;
         }

@@ -42,12 +42,18 @@ import { useUserStore } from '@/store/user-store';
 import Swal from '../../sweetalert2';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import { onMounted } from '@vue/runtime-core';
 
 
 
 const route = useRoute();
 const postStore = usePostStore();
 const userStore = useUserStore();
+
+onMounted( async ()=>{
+  await postStore.fetchPostsByUserId(route.params.id);
+})
+
   const deletePost = async (title, id) => {
         Swal.fire({
             title: 'Are you sure you want to delete the post "' + title + '"',
